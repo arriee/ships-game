@@ -1,0 +1,82 @@
+* {
+    margin:0;
+    padding:0;
+    font-size: 23px;
+}
+
+body {
+    background-color: rgba(174, 217, 224 , 0.2)
+}
+
+.radio {
+    text-align: center;
+}
+
+main {
+    text-align: center;
+}
+
+.tables {
+    display: inline-block;
+    height: 525px;
+    width: 525px;
+}
+
+.field {
+    user-select:none;
+    touch-action: none;
+    display: inline-block;
+    margin: 20px 20px;
+    width: auto;
+}
+
+.row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    text-align: center;
+}
+
+.infoCell {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #5E6472;
+}
+
+.infoShip {
+    margin: 10px 10px;
+    display: inline-block;
+    color: #5E6472;
+}
+
+.col {
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #5E6472;
+}
+
+.coordinates {
+    border: 1px solid rgba(0, 0, 0, 0);
+    color: #5E6472;
+    font-weight: bold;
+}
+
+.collision {
+    background: rgba(255, 166, 158,0.11);
+}
+
+.ship {
+    background: #5E6472;
+}
+
+.selectedInfoShip {
+    background: rgba(255, 166, 158,0.15);
+}

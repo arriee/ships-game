@@ -3,7 +3,8 @@ let socket = io();
 const mainDOM = document.querySelector('main');
 const containerDOM = document.querySelector('.container');
 const infoContainerDOM = document.querySelector('.infoContainer');
-const inputDOM = document.querySelector('.input');
+const inputDOM = document.querySelector('input');
+const formDOM = document.querySelector('form');
 
 const opponentsMoveMsg = 'Opponent\'s move';
 const yourMoveMsg = 'Your move';
@@ -95,7 +96,8 @@ const joinRoom = (room) => {
 }
 
 const prepareNewGame = () => {
-    document.querySelector('.play').addEventListener('click touch', () => {
+    formDOM.addEventListener('submit', (evt) => {
+        evt.preventDefault();
         const room = inputDOM.value;
 
         if (room) {

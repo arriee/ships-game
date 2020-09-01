@@ -64,10 +64,23 @@ const createField = (n) => {
     return {field, subElements};
 }
 
+const createRoom = () => {
+    mainDOM.innerHTML = '<h1>Waiting for opponent...</h1>'
+}
+
 const prepareNewGame = () => {
-    const playerField = new DrawingLogic('normal');
-    mainDOM.appendChild(playerField.field);
-    containerDOM.appendChild(playerField.info);
+
+    document.querySelector('.createRoom').addEventListener('click', () => {
+
+        mainDOM.innerText = ''
+
+        createRoom();
+
+        /*const playerField = new DrawingLogic('normal');
+        mainDOM.appendChild(playerField.field);
+        containerDOM.appendChild(playerField.info);*/
+    })
+
 }
 
 const startGame = (playerField, database) => {
@@ -84,15 +97,16 @@ const startGame = (playerField, database) => {
 
 
     // SOCKET.IO //////////////////////////
-    socket.on('connect', () => {
-        console.log('Connected')
-    });
+
+    const userTurn = false;
+    const opponentTurn = false;
 
     let clicked = [];
-    let responded = true;
 
     opponentField.field.addEventListener('click', (evt) => {
-        if (evt.target.className === 'col' && responded) {
+        if (evt.target.className === 'col') {
+            clicked = [];
+            console.log(evt.target);
             const row = +evt.target.parentElement.dataset.id.replace('row', '');
             const col = +evt.target.dataset.id.replace('col', '');
 
@@ -100,26 +114,26 @@ const startGame = (playerField, database) => {
             clicked.push(col);
 
             socket.emit('target', clicked);
-
-            responded = false;
-
-            socket.on('msg', (msg) => {
-                console.log(msg);
-
-                const cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
-
-                if (msg === 'hit') {
-                    cell.innerText = 'X'
-                    cell.classList.add('hit');
-                } else if (msg === 'miss') {
-                    cell.classList.add('miss')
-                }
-
-                clicked = [];
-                responded = true
-            })
         }
     })
+
+
+    socket.on('msg', (msg) => {
+        console.log(msg);
+
+        let cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
+
+        if (msg === 'hit') {
+            cell.innerText = 'X'
+            cell.classList.add('hit');
+        } else if (msg === 'miss') {
+            cell.classList.add('miss')
+        }
+
+        clicked = [];
+
+    })
+
 
     // RECEIVING DATA
     socket.on('target', (coords) => {
@@ -226,8 +240,6 @@ class DrawingLogic {
     }
 
     getSubElements() {
-
-        console.log(this);
 
         const obj = {...this.subElements};
         const infoElements = this.info.querySelectorAll('[data-id]');

@@ -6,6 +6,8 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+const port = process.env.PORT || 3000;
+
 const publicDirPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicDirPath));
@@ -78,4 +80,4 @@ app.get('', ((req, res) => {
     res.render('index');
 }))
 
-server.listen(3000);
+server.listen(port);

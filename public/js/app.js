@@ -1,7 +1,8 @@
-const socket = io();
+let socket = io();
 
 const mainDOM = document.querySelector('main');
 const containerDOM = document.querySelector('.container');
+const inputDOM = document.querySelector('.input');
 
 const createField = (n) => {
 
@@ -64,21 +65,39 @@ const createField = (n) => {
     return {field, subElements};
 }
 
-const createRoom = () => {
-    mainDOM.innerHTML = '<h1>Waiting for opponent...</h1>'
+const joinRoom = (room) => {
+
+    socket.emit('join', { room });
+
+    socket.on('roomJoin', (msg) => {
+        if (msg === 'succeed') {
+            mainDOM.innerHTML = ''
+            containerDOM.innerHTML = ''
+            mainDOM.innerHTML = '<h1>Waiting for opponent...</h1>'
+
+        } else if (msg === 'full') {
+            containerDOM.innerHTML = '<h2>Room is full</h2>'
+        }
+    })
+
+    socket.on('roomCompleted', () => {
+        mainDOM.innerHTML = ''
+        containerDOM.innerHTML = ''
+        const playerField = new DrawingLogic('normal');
+        mainDOM.appendChild(playerField.field);
+        containerDOM.appendChild(playerField.info)
+    })
+
 }
 
 const prepareNewGame = () => {
 
-    document.querySelector('.createRoom').addEventListener('click', () => {
+    document.querySelector('.play').addEventListener('click', () => {
+        const room = inputDOM.value;
 
-        mainDOM.innerText = ''
-
-        createRoom();
-
-        /*const playerField = new DrawingLogic('normal');
-        mainDOM.appendChild(playerField.field);
-        containerDOM.appendChild(playerField.info);*/
+        if (room) {
+            joinRoom(room);
+        }
     })
 
 }
@@ -98,8 +117,9 @@ const startGame = (playerField, database) => {
 
     // SOCKET.IO //////////////////////////
 
-    const userTurn = false;
-    const opponentTurn = false;
+    let whoseTurn;
+    socket.emit()
+
 
     let clicked = [];
 
@@ -118,7 +138,7 @@ const startGame = (playerField, database) => {
     })
 
 
-    socket.on('msg', (msg) => {
+    socket.on('hitOrMiss', (msg) => {
         console.log(msg);
 
         let cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
@@ -145,14 +165,14 @@ const startGame = (playerField, database) => {
                 if (cell[0] === coords[0] && cell[1] === coords[1]) {
                     el.splice(index, 1);
 
-                    socket.emit('msg', 'hit');
+                    socket.emit('hitOrMiss', 'hit');
                     hit = true;
                 }
             })
         })
 
         if (!hit) {
-            socket.emit('msg', 'miss');
+            socket.emit('hitOrMiss', 'miss');
         }
 
         console.log(database);

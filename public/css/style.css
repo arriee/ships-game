@@ -97,3 +97,8 @@ button {
     color: white;
     padding: 8px;
 }
+
+input {
+    border: 1px solid #888888;
+    padding: 8px;
+}

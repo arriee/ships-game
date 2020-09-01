@@ -2,7 +2,11 @@ let socket = io();
 
 const mainDOM = document.querySelector('main');
 const containerDOM = document.querySelector('.container');
+const infoContainerDOM = document.querySelector('.infoContainer');
 const inputDOM = document.querySelector('.input');
+
+const opponentsMoveMsg = 'Opponent\'s move';
+const yourMoveMsg = 'Your move';
 
 const createField = (n) => {
 
@@ -67,6 +71,8 @@ const createField = (n) => {
 
 const joinRoom = (room) => {
 
+
+
     socket.emit('join', { room });
 
     socket.on('roomJoin', (msg) => {
@@ -103,6 +109,9 @@ const prepareNewGame = () => {
 }
 
 const startGame = (playerField, database) => {
+
+    socket.emit('ready');
+
     // add sub elements
     mainDOM.innerHTML = '';
     containerDOM.innerHTML = '';
@@ -117,28 +126,51 @@ const startGame = (playerField, database) => {
 
     // SOCKET.IO //////////////////////////
 
-    let whoseTurn;
-    socket.emit()
+    let turn;
+    // turn = 0 - opponent turn
+    // turn = 1 - player turn
 
+    socket.emit('whoStarts');
+    socket.on('whoStarts', (who) => {
+        if (who === 0) {
+            turn = 1;
+            infoContainerDOM.innerHTML = yourMoveMsg;
+        } else if (who === 1) {
+            turn = 0;
+            infoContainerDOM.innerHTML = opponentsMoveMsg;
+        }
+    })
 
     let clicked = [];
 
     opponentField.field.addEventListener('click', (evt) => {
         if (evt.target.className === 'col') {
-            clicked = [];
-            console.log(evt.target);
-            const row = +evt.target.parentElement.dataset.id.replace('row', '');
-            const col = +evt.target.dataset.id.replace('col', '');
 
-            clicked.push(row);
-            clicked.push(col);
+            if (turn === 1) {
+                clicked = [];
+                console.log(evt.target);
+                const row = +evt.target.parentElement.dataset.id.replace('row', '');
+                const col = +evt.target.dataset.id.replace('col', '');
 
-            socket.emit('target', clicked);
+                clicked.push(row);
+                clicked.push(col);
+
+                socket.emit('target', clicked);
+            } else if (turn === 0) {
+                infoContainerDOM.innerHTML = opponentsMoveMsg;
+            }
+
         }
     })
 
+    socket.on('notReady', () => {
+        containerDOM.innerHTML = '<h2>Opponent not ready! Please wait!</h2>'
+    })
 
     socket.on('hitOrMiss', (msg) => {
+        turn = 0;
+        containerDOM.innerHTML = '';
+        infoContainerDOM.innerHTML = opponentsMoveMsg;
         console.log(msg);
 
         let cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
@@ -157,6 +189,10 @@ const startGame = (playerField, database) => {
 
     // RECEIVING DATA
     socket.on('target', (coords) => {
+        turn = 1;
+        containerDOM.innerHTML = '';
+        infoContainerDOM.innerHTML = yourMoveMsg;
+
         console.log(coords);
         let hit = false;
 
@@ -177,8 +213,6 @@ const startGame = (playerField, database) => {
 
         console.log(database);
     });
-
-
 
 }
 

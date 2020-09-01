@@ -42,6 +42,10 @@ main {
     text-align: center;
 }
 
+.infoContainer {
+    text-align: center;
+}
+
 .infoCell {
     display: inline-block;
     height: 30px;

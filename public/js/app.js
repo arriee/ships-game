@@ -70,9 +70,6 @@ const createField = (n) => {
 }
 
 const joinRoom = (room) => {
-
-
-
     socket.emit('join', { room });
 
     socket.on('roomJoin', (msg) => {
@@ -97,8 +94,7 @@ const joinRoom = (room) => {
 }
 
 const prepareNewGame = () => {
-
-    document.querySelector('.play').addEventListener('click', () => {
+    document.querySelector('.play').addEventListener('submit', () => {
         const room = inputDOM.value;
 
         if (room) {

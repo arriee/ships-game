@@ -95,7 +95,7 @@ const joinRoom = (room) => {
 }
 
 const prepareNewGame = () => {
-    document.querySelector('.play').addEventListener('click', () => {
+    document.querySelector('.play').addEventListener('click touch', () => {
         const room = inputDOM.value;
 
         if (room) {

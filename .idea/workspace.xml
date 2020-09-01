@@ -53,7 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1598865445611</updated>
       <workItem from="1598865446744" duration="16725000" />
-      <workItem from="1598951892590" duration="20865000" />
+      <workItem from="1598951892590" duration="20966000" />
     </task>
     <task id="LOCAL-00001" summary="added connection between 2 devices">
       <created>1598949535066</created>
@@ -97,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598994249835</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="* bug fixes">
+      <created>1598994363038</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1598994363038</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,10 +138,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="586" y="228" key="Github.UntrackedFilesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1598867628191" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1598993950159">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1598994357154">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1598993950159" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1598994357154" />
     <state x="721" y="376" key="cloudConfig.SelfSettingsDialog" timestamp="1598882439839">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

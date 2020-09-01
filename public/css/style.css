@@ -80,3 +80,11 @@ main {
 .selectedInfoShip {
     background: rgba(255, 166, 158,0.15);
 }
+
+.hit {
+
+}
+
+.miss {
+    background: rgba(255, 166, 158,0.11);
+}

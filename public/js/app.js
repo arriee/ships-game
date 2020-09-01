@@ -1,3 +1,8 @@
+const socket = io();
+
+const mainDOM = document.querySelector('main');
+const containerDOM = document.querySelector('.container');
+
 const createField = (n) => {
 
     let field, subElements;
@@ -59,16 +64,99 @@ const createField = (n) => {
     return {field, subElements};
 }
 
-class PlayerField {
+const prepareNewGame = () => {
+    const playerField = new DrawingLogic('normal');
+    mainDOM.appendChild(playerField.field);
+    containerDOM.appendChild(playerField.info);
+}
+
+const startGame = (playerField, database) => {
+    // add sub elements
+    mainDOM.innerHTML = '';
+    containerDOM.innerHTML = '';
+
+    const opponentField = createField(10);
+
+    mainDOM.appendChild(playerField.field);
+    mainDOM.appendChild(opponentField.field);
+
+    console.log('DATABASE', database);
+
+
+    // SOCKET.IO //////////////////////////
+    socket.on('connect', () => {
+        console.log('Connected')
+    });
+
+    let clicked = [];
+    let responded = true;
+
+    opponentField.field.addEventListener('click', (evt) => {
+        if (evt.target.className === 'col' && responded) {
+            const row = +evt.target.parentElement.dataset.id.replace('row', '');
+            const col = +evt.target.dataset.id.replace('col', '');
+
+            clicked.push(row);
+            clicked.push(col);
+
+            socket.emit('target', clicked);
+
+            responded = false;
+
+            socket.on('msg', (msg) => {
+                console.log(msg);
+
+                const cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
+
+                if (msg === 'hit') {
+                    cell.innerText = 'X'
+                    cell.classList.add('hit');
+                } else if (msg === 'miss') {
+                    cell.classList.add('miss')
+                }
+
+                clicked = [];
+                responded = true
+            })
+        }
+    })
+
+    // RECEIVING DATA
+    socket.on('target', (coords) => {
+        console.log(coords);
+        let hit = false;
+
+        database.forEach(el => {
+            el.forEach((cell, index) => {
+                if (cell[0] === coords[0] && cell[1] === coords[1]) {
+                    el.splice(index, 1);
+
+                    socket.emit('msg', 'hit');
+                    hit = true;
+                }
+            })
+        })
+
+        if (!hit) {
+            socket.emit('msg', 'miss');
+        }
+
+        console.log(database);
+    });
+
+
+
+}
+
+class DrawingLogic {
 
     configuration = {
         normal: {
             size: 10,
             ships: {
-                4: 1,
                 3: 2,
-                2: 3,
-                1: 4
+                2: 1,
+                1: 1
             }
         },
         arena: {
@@ -114,6 +202,7 @@ class PlayerField {
 
     field;
     subElements;
+    onlyFieldSubElements;
     info;
 
     database = {};
@@ -129,6 +218,7 @@ class PlayerField {
 
         this.field = field;
         this.subElements = subElements;
+        this.onlyFieldSubElements = subElements;
         this.generateDatabase();
         this.generateInfo();
         this.getSubElements();
@@ -136,6 +226,9 @@ class PlayerField {
     }
 
     getSubElements() {
+
+        console.log(this);
+
         const obj = {...this.subElements};
         const infoElements = this.info.querySelectorAll('[data-id]');
 
@@ -548,7 +641,8 @@ class PlayerField {
         // Removing collisions when all ships are placed
         if (this.shipsCounter.total === 0) {
             this.collisions.forEach(el => this.getCell(...el).classList.remove('collision'));
-            this.info.innerHTML = '<p>Searching for opponent. Please wait...</p>';
+
+            this.startGame();
         }
 
         // Resetting the state
@@ -558,18 +652,22 @@ class PlayerField {
 
     }
 
+    startGame() {
+        const field = this.field.cloneNode(true);
+        const readyDatabase = [];
+        const subElements = this.onlyFieldSubElements;
+
+        for (const element in this.database) {
+            for (const el in this.database[element]) {
+                const ship = this.database[element][el].ship
+                readyDatabase.push(ship);
+            }
+        }
+
+        startGame({field, subElements}, readyDatabase);
+    }
+
 
 }
 
-const newGame = () => {
-    const mainDOM = document.querySelector('main');
-    const containerDOM = document.querySelector('.container');
-
-    const playerField = new PlayerField('normal');
-    const opponentField = createField(10);
-    mainDOM.appendChild(playerField.field);
-    mainDOM.appendChild(opponentField.field);
-    containerDOM.appendChild(playerField.info);
-}
-
-newGame();
+prepareNewGame();

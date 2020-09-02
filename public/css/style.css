@@ -24,7 +24,7 @@ main {
 }
 
 .field {
-    user-select:none;
+    user-select: none;
     touch-action: none;
     display: inline-block;
     margin: 20px 20px;

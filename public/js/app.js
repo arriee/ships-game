@@ -147,7 +147,6 @@ const startGame = (playerField, database) => {
 
             if (turn === 1) {
                 clicked = [];
-                console.log(evt.target);
                 const row = +evt.target.parentElement.dataset.id.replace('row', '');
                 const col = +evt.target.dataset.id.replace('col', '');
 
@@ -170,7 +169,6 @@ const startGame = (playerField, database) => {
         turn = 0;
         containerDOM.innerHTML = '';
         infoContainerDOM.innerHTML = opponentsMoveMsg;
-        console.log(msg);
 
         let cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
 
@@ -192,7 +190,6 @@ const startGame = (playerField, database) => {
         containerDOM.innerHTML = '';
         infoContainerDOM.innerHTML = yourMoveMsg;
 
-        console.log(coords);
         let hit = false;
 
         database.forEach(el => {
@@ -209,8 +206,6 @@ const startGame = (playerField, database) => {
         if (!hit) {
             socket.emit('hitOrMiss', 'miss');
         }
-
-        console.log(database);
     });
 
 }

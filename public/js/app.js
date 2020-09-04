@@ -216,9 +216,10 @@ class DrawingLogic {
         normal: {
             size: 10,
             ships: {
+                4: 1,
                 3: 2,
-                2: 1,
-                1: 1
+                2: 3,
+                1: 2
             }
         },
         arena: {

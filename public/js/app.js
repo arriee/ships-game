@@ -153,9 +153,9 @@ const startGame = (playerField, database) => {
     opponentField.field.addEventListener('click', (evt) => {
 
         if (cooldown) return;
-        if (!cooldown) {
-            cooldown = true;
+        cooldown = true;
 
+        setTimeout(() => {
             if (evt.target.className === 'col') {
 
                 if (turn === 1) {
@@ -172,10 +172,9 @@ const startGame = (playerField, database) => {
                 }
 
             }
+        }, 500)
 
-            setTimeout(setCooldown(), 1000);
-
-        }
+        setTimeout(setCooldown(), 1000);
 
 
     })

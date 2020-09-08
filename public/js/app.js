@@ -193,7 +193,7 @@ const startGame = (playerField, database) => {
         if (msg === 'hit') {
             cell.innerText = 'X';
             cell.classList.add('hit');
-        } else if (msg === 'miss') {
+        } else if (msg === 'miss' && !cell.classList.contains('hit')) {
             cell.classList.add('miss')
         }
 

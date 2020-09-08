@@ -171,7 +171,7 @@ const startGame = (playerField, database) => {
 
             }
 
-            setTimeout(setCooldown(), 3000);
+            setTimeout(setCooldown(), 5000);
 
         }
 

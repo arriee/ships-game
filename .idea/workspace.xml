@@ -60,7 +60,7 @@
       <workItem from="1599258818652" duration="218000" />
       <workItem from="1599549536037" duration="8994000" />
       <workItem from="1599586659011" duration="151000" />
-      <workItem from="1599588832823" duration="674000" />
+      <workItem from="1599588832823" duration="1015000" />
     </task>
     <task id="LOCAL-00001" summary="added connection between 2 devices">
       <created>1598949535066</created>
@@ -160,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599586752039</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="* fixed bugs">
+      <created>1599589561047</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1599589561047</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,7 +193,8 @@
     <MESSAGE value="* bug fixes" />
     <MESSAGE value="First playable version&#10;* added event in case of finish&#10;* added hit event" />
     <MESSAGE value="* changed configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="* changed configuration" />
+    <MESSAGE value="* fixed bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="* fixed bugs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="429" key="Github.ShareDialog" timestamp="1598867614475">
@@ -197,10 +205,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="586" y="228" key="Github.UntrackedFilesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1598867628191" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1599584268079">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1599590199726">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1599584268079" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1599590199726" />
     <state x="721" y="376" key="cloudConfig.SelfSettingsDialog" timestamp="1598882439839">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

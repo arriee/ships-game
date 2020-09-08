@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88320c88-3723-4969-8984-a82d668e08cb" name="Default Changelist" comment="* changed configuration">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +59,7 @@
       <workItem from="1599258818652" duration="218000" />
       <workItem from="1599549536037" duration="8994000" />
       <workItem from="1599586659011" duration="151000" />
-      <workItem from="1599588832823" duration="1015000" />
+      <workItem from="1599588832823" duration="1167000" />
     </task>
     <task id="LOCAL-00001" summary="added connection between 2 devices">
       <created>1598949535066</created>
@@ -167,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599589561047</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="* changed configuration">
+      <created>1599590312563</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1599590312563</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,9 +198,9 @@
     <MESSAGE value="* player and opponent turn&#10;* database" />
     <MESSAGE value="* bug fixes" />
     <MESSAGE value="First playable version&#10;* added event in case of finish&#10;* added hit event" />
-    <MESSAGE value="* changed configuration" />
     <MESSAGE value="* fixed bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="* fixed bugs" />
+    <MESSAGE value="* changed configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="* changed configuration" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="429" key="Github.ShareDialog" timestamp="1598867614475">

@@ -144,39 +144,27 @@ const startGame = (playerField, database) => {
     })
 
     let clicked = [];
-    let cooldown = false;
-
-    const setCooldown = () => {
-        cooldown = false;
-    }
 
     opponentField.field.addEventListener('click', (evt) => {
 
-        if (cooldown) {
-            // cos tam
-        }
-        cooldown = true;
+        if (evt.target.className === 'col') {
 
-        setTimeout(() => {
-            if (evt.target.className === 'col') {
+            if (turn === 1) {
+                bodyDOM.classList.add('cover');
+                clicked = [];
+                const row = +evt.target.parentElement.dataset.id.replace('row', '');
+                const col = +evt.target.dataset.id.replace('col', '');
 
-                if (turn === 1) {
-                    clicked = [];
-                    const row = +evt.target.parentElement.dataset.id.replace('row', '');
-                    const col = +evt.target.dataset.id.replace('col', '');
+                clicked.push(row);
+                clicked.push(col);
 
-                    clicked.push(row);
-                    clicked.push(col);
-
-                    socket.emit('target', clicked);
-                } else if (turn === 0) {
-                    infoContainerDOM.innerHTML = opponentsMoveMsg;
-                }
-
+                socket.emit('target', clicked);
+            } else if (turn === 0) {
+                bodyDOM.classList.add('cover');
+                infoContainerDOM.innerHTML = opponentsMoveMsg;
             }
-        }, 200)
 
-        setTimeout(setCooldown(), 100);
+        }
 
 
     })
@@ -207,6 +195,7 @@ const startGame = (playerField, database) => {
         turn = 1;
         containerDOM.innerHTML = '';
         infoContainerDOM.innerHTML = yourMoveMsg;
+        bodyDOM.classList.remove('cover');
 
         let hit = false;
         let targetCell = playerField.subElements[`row${coords[0]}`].childNodes[coords[1]];

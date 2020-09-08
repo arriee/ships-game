@@ -75,7 +75,7 @@ main {
 }
 
 .collision {
-    background: rgba(255, 166, 158,0.11);
+    background: rgba(255, 166, 158,0.5);
 }
 
 .ship {
@@ -92,7 +92,7 @@ main {
 }
 
 .miss {
-    background: rgba(255, 166, 158,0.11);
+    background: rgba(255, 166, 158,0.5);
 }
 
 button {

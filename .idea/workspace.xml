@@ -59,7 +59,7 @@
       <workItem from="1599258818652" duration="218000" />
       <workItem from="1599549536037" duration="8994000" />
       <workItem from="1599586659011" duration="151000" />
-      <workItem from="1599588832823" duration="3591000" />
+      <workItem from="1599588832823" duration="3691000" />
     </task>
     <task id="LOCAL-00001" summary="added connection between 2 devices">
       <created>1598949535066</created>
@@ -236,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599593189190</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="* changed configuration">
+      <created>1599593388120</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1599593388120</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

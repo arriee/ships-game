@@ -72,8 +72,8 @@ io.on('connection', (socket) => {
 
     });
 
-    socket.on('hitOrMiss', (msg) => {
-        socket.to(roomName).emit('hitOrMiss', msg);
+    socket.on('hitOrMiss', (msg, coords) => {
+        socket.to(roomName).emit('hitOrMiss', msg, coords);
     });
 
     socket.on('theEnd', () => {

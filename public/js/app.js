@@ -172,9 +172,9 @@ const startGame = (playerField, database) => {
                 }
 
             }
-        }, 500)
+        }, 100)
 
-        setTimeout(setCooldown(), 1000);
+        setTimeout(setCooldown(), 100);
 
 
     })
@@ -183,12 +183,12 @@ const startGame = (playerField, database) => {
         containerDOM.innerHTML = '<h2>Opponent not ready! Please wait!</h2>'
     })
 
-    socket.on('hitOrMiss', (msg) => {
+    socket.on('hitOrMiss', (msg, coords) => {
         turn = 0;
         containerDOM.innerHTML = '';
         infoContainerDOM.innerHTML = opponentsMoveMsg;
 
-        let cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
+        let cell = opponentField.subElements[`row${coords[0]}`].childNodes[coords[1]];
 
         if (msg === 'hit') {
             cell.innerText = 'X';
@@ -222,14 +222,14 @@ const startGame = (playerField, database) => {
                     targetCell.innerText = 'X';
                     targetCell.classList.add('hit');
 
-                    socket.emit('hitOrMiss', 'hit');
+                    socket.emit('hitOrMiss', 'hit', coords);
                     hit = true;
                 }
             })
         })
 
         if (!hit) {
-            socket.emit('hitOrMiss', 'miss');
+            socket.emit('hitOrMiss', 'miss', coords);
             targetCell.innerHTML = '<span>&#183;</span>';
         }
 

@@ -1,6 +1,4 @@
-const db = {};
-
-// Add cleaning after finish
+let db = {};
 
 const addRoom = (room) => {
     const newRoom = {
@@ -8,6 +6,21 @@ const addRoom = (room) => {
     }
     db[room] = newRoom;
 }
+
+const removeRoom = (room) => {
+    const newDb = {};
+    const keys = Object.keys(db).reduce((acc, el) => {
+        if (el !== room) {
+            acc.push(el);
+        }
+        return acc;
+    }, []);
+
+    keys.forEach(el => newDb[el] = db[el]);
+
+    db = newDb;
+}
+
 
 const addUser = (room, userID) => {
     db[room].users[userID] = false;
@@ -30,4 +43,4 @@ const isReady = (room, userID) => {
     return db[room].users[userID];
 }
 
-module.exports = {addRoom, addUser, getOpponent, setReady, isReady};
+module.exports = {addRoom, removeRoom, addUser, getOpponent, setReady, isReady};

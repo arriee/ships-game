@@ -1,11 +1,14 @@
 let socket = io();
 
+// DOM
 const mainDOM = document.querySelector('main');
+const bodyDOM = document.querySelector('body');
 const containerDOM = document.querySelector('.container');
 const infoContainerDOM = document.querySelector('.infoContainer');
 const inputDOM = document.querySelector('input');
 const formDOM = document.querySelector('form');
 
+// MSG
 const opponentsMoveMsg = 'Opponent\'s move';
 const yourMoveMsg = 'Your move';
 
@@ -173,7 +176,7 @@ const startGame = (playerField, database) => {
         let cell = opponentField.subElements[`row${clicked[0]}`].childNodes[clicked[1]];
 
         if (msg === 'hit') {
-            cell.innerText = 'X'
+            cell.innerText = 'X';
             cell.classList.add('hit');
         } else if (msg === 'miss') {
             cell.classList.add('miss')
@@ -183,19 +186,26 @@ const startGame = (playerField, database) => {
 
     })
 
-
-    // RECEIVING DATA
     socket.on('target', (coords) => {
         turn = 1;
         containerDOM.innerHTML = '';
         infoContainerDOM.innerHTML = yourMoveMsg;
 
         let hit = false;
+        let targetCell = playerField.subElements[`row${coords[0]}`].childNodes[coords[1]];
 
-        database.forEach(el => {
+
+        database.forEach((el, i) => {
             el.forEach((cell, index) => {
                 if (cell[0] === coords[0] && cell[1] === coords[1]) {
                     el.splice(index, 1);
+
+                    if (el.length === 0) {
+                        database.splice(i, 1);
+                    }
+
+                    targetCell.innerText = 'X';
+                    targetCell.classList.add('hit');
 
                     socket.emit('hitOrMiss', 'hit');
                     hit = true;
@@ -205,9 +215,34 @@ const startGame = (playerField, database) => {
 
         if (!hit) {
             socket.emit('hitOrMiss', 'miss');
+            targetCell.innerHTML = '<span>&#183;</span>';
+        }
+
+        if (database.length === 0) {
+            endGameHandler('lost');
         }
     });
 
+
+    socket.on('youWon', () => {
+        endGameHandler('won');
+    })
+
+}
+
+const endGameHandler = (type) => {
+    bodyDOM.classList.add('cover');
+
+    if (type === 'lost') {
+        infoContainerDOM.innerHTML = '';
+        containerDOM.innerHTML = '<p>You lost!</p>'
+        socket.emit('theEnd');
+    }
+
+    if (type === 'won') {
+        infoContainerDOM.innerHTML = '';
+        containerDOM.innerHTML = '<p>You won!</p>'
+    }
 }
 
 class DrawingLogic {
@@ -216,10 +251,8 @@ class DrawingLogic {
         normal: {
             size: 10,
             ships: {
-                4: 1,
-                3: 2,
-                2: 3,
-                1: 2
+                2: 1,
+                1: 1
             }
         },
         arena: {
@@ -265,7 +298,6 @@ class DrawingLogic {
 
     field;
     subElements;
-    onlyFieldSubElements;
     info;
 
     database = {};
@@ -281,7 +313,6 @@ class DrawingLogic {
 
         this.field = field;
         this.subElements = subElements;
-        this.onlyFieldSubElements = subElements;
         this.generateDatabase();
         this.generateInfo();
         this.getSubElements();
@@ -716,7 +747,15 @@ class DrawingLogic {
     startGame() {
         const field = this.field.cloneNode(true);
         const readyDatabase = [];
-        const subElements = this.onlyFieldSubElements;
+
+        const subElements = {};
+        const fieldElements = field.querySelectorAll('[data-id]');
+
+        for (const element of fieldElements) {
+            if (element.className === 'row') {
+                subElements[element.dataset.id] = element;
+            }
+        }
 
         for (const element in this.database) {
             for (const el in this.database[element]) {

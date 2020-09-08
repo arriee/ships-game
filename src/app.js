@@ -1,4 +1,4 @@
-const {addRoom, addUser, getOpponent, setReady, isReady} = require('./utils/db');
+const {addRoom, removeRoom, addUser, getOpponent, setReady, isReady} = require('./utils/db');
 const path = require('path');
 
 const express = require('express');
@@ -48,6 +48,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
+        removeRoom(roomName);
         console.log('user disconnected');
     });
 
@@ -74,6 +75,10 @@ io.on('connection', (socket) => {
     socket.on('hitOrMiss', (msg) => {
         socket.to(roomName).emit('hitOrMiss', msg);
     });
+
+    socket.on('theEnd', () => {
+        socket.to(roomName).emit('youWon');
+    })
 });
 
 app.get('', ((req, res) => {

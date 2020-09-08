@@ -87,7 +87,8 @@ main {
 }
 
 .hit {
-
+    background: rgba(102, 43, 33, 0.98);
+    color: white;
 }
 
 .miss {
@@ -105,4 +106,25 @@ button {
 input {
     border: 1px solid #888888;
     padding: 8px;
+}
+
+span {
+    font-size: 40px;
+}
+
+p {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.80;
+    background: #aaa;
+    z-index: 10;
+    pointer-events: none;
 }

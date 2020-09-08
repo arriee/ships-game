@@ -234,14 +234,14 @@ const endGameHandler = (type) => {
     bodyDOM.classList.add('cover');
 
     if (type === 'lost') {
-        infoContainerDOM.innerHTML = '';
         containerDOM.innerHTML = '<p>You lost!</p>'
+        infoContainerDOM.innerHTML = 'Maybe next time!';
         socket.emit('theEnd');
     }
 
     if (type === 'won') {
-        infoContainerDOM.innerHTML = '';
         containerDOM.innerHTML = '<p>You won!</p>'
+        infoContainerDOM.innerHTML = 'Congratulations!';
     }
 }
 
@@ -251,11 +251,13 @@ class DrawingLogic {
         normal: {
             size: 10,
             ships: {
-                2: 1,
-                1: 1
+                4: 1,
+                3: 2,
+                2: 3,
+                1: 3
             }
         },
-        arena: {
+/*        arena: {
             size: 5,
             ships: {
                 1: 3
@@ -268,7 +270,7 @@ class DrawingLogic {
                 3: 4,
                 1: 1
             }
-        }
+        }*/
     };
 
     state = {

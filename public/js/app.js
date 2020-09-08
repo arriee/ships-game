@@ -152,7 +152,9 @@ const startGame = (playerField, database) => {
 
     opponentField.field.addEventListener('click', (evt) => {
 
-        if (cooldown) return;
+        if (cooldown) {
+            evt.stopPropagation()
+        }
         cooldown = true;
 
         setTimeout(() => {

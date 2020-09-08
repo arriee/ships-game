@@ -144,24 +144,38 @@ const startGame = (playerField, database) => {
     })
 
     let clicked = [];
+    let cooldown = false;
+
+    const setCooldown = () => {
+        cooldown = false;
+    }
 
     opponentField.field.addEventListener('click', (evt) => {
-        if (evt.target.className === 'col') {
 
-            if (turn === 1) {
-                clicked = [];
-                const row = +evt.target.parentElement.dataset.id.replace('row', '');
-                const col = +evt.target.dataset.id.replace('col', '');
+        if (!cooldown) {
 
-                clicked.push(row);
-                clicked.push(col);
+            if (evt.target.className === 'col') {
 
-                socket.emit('target', clicked);
-            } else if (turn === 0) {
-                infoContainerDOM.innerHTML = opponentsMoveMsg;
+                if (turn === 1) {
+                    clicked = [];
+                    const row = +evt.target.parentElement.dataset.id.replace('row', '');
+                    const col = +evt.target.dataset.id.replace('col', '');
+
+                    clicked.push(row);
+                    clicked.push(col);
+
+                    socket.emit('target', clicked);
+                } else if (turn === 0) {
+                    infoContainerDOM.innerHTML = opponentsMoveMsg;
+                }
+
             }
 
+            setTimeout(setCooldown(), 3000);
+
         }
+
+
     })
 
     socket.on('notReady', () => {

@@ -150,7 +150,6 @@ const startGame = (playerField, database) => {
         if (evt.target.className === 'col') {
 
             if (turn === 1) {
-                bodyDOM.classList.add('cover');
                 clicked = [];
                 const row = +evt.target.parentElement.dataset.id.replace('row', '');
                 const col = +evt.target.dataset.id.replace('col', '');

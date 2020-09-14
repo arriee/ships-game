@@ -19,12 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88320c88-3723-4969-8984-a82d668e08cb" name="Default Changelist" comment="* changed configuration">
+    <list default="true" id="88320c88-3723-4969-8984-a82d668e08cb" name="Default Changelist" comment="* v1.0 completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +62,7 @@
       <workItem from="1599586659011" duration="151000" />
       <workItem from="1599588832823" duration="4355000" />
       <workItem from="1599644821331" duration="1032000" />
-      <workItem from="1600079677831" duration="2057000" />
+      <workItem from="1600079677831" duration="3156000" />
     </task>
     <task id="LOCAL-00001" summary="added connection between 2 devices">
       <created>1598949535066</created>
@@ -277,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599644886970</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="* v1.0 completed">
+      <created>1600081827921</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1600081827921</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +309,8 @@
     <MESSAGE value="* fixed bugs" />
     <MESSAGE value="* changed configuration" />
     <MESSAGE value="*bugs fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="*bugs fixed" />
+    <MESSAGE value="* v1.0 completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="* v1.0 completed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="429" key="Github.ShareDialog" timestamp="1598867614475">
@@ -316,10 +321,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="586" y="228" key="Github.UntrackedFilesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1598867628191" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1599594361789">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1600081834936">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1599594361789" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1600081834936" />
     <state x="721" y="376" key="cloudConfig.SelfSettingsDialog" timestamp="1598882439839">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

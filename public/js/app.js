@@ -171,7 +171,7 @@ const startGame = (playerField, database) => {
                 clicked.push(col);
 
                 socket.emit('target', clicked);
-            } else if (turn === 0) {
+
                 bodyDOM.classList.add('cover');
                 infoContainerDOM.innerHTML = opponentsMoveMsg;
             }

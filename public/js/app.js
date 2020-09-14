@@ -7,6 +7,7 @@ const containerDOM = document.querySelector('.container');
 const infoContainerDOM = document.querySelector('.infoContainer');
 const inputDOM = document.querySelector('input');
 const formDOM = document.querySelector('form');
+const modalDOM = document.querySelector('.modal');
 
 // MSG
 const opponentsMoveMsg = 'Opponent\'s move';
@@ -93,7 +94,7 @@ const joinRoom = (room) => {
         containerDOM.innerHTML = ''
         const playerField = new DrawingLogic('normal');
         mainDOM.appendChild(playerField.field);
-        containerDOM.appendChild(playerField.info)
+        containerDOM.appendChild(playerField.info);
     })
 
 }
@@ -110,6 +111,14 @@ const prepareNewGame = () => {
 
 }
 
+const toggleModal = () => {
+    if (modalDOM.style.display === '') {
+        modalDOM.style.display = 'block';
+    } else {
+        modalDOM.style.display = '';
+    }
+}
+
 const startGame = (playerField, database) => {
 
     socket.emit('ready');
@@ -123,10 +132,14 @@ const startGame = (playerField, database) => {
     mainDOM.appendChild(playerField.field);
     mainDOM.appendChild(opponentField.field);
 
-    console.log('DATABASE', database);
-
+    toggleModal();
 
     // SOCKET.IO //////////////////////////
+
+    socket.on('ready', () => {
+        toggleModal();
+    });
+
 
     let turn;
     // turn = 0 - opponent turn
@@ -166,10 +179,6 @@ const startGame = (playerField, database) => {
         }
 
 
-    })
-
-    socket.on('notReady', () => {
-        containerDOM.innerHTML = '<h2>Opponent not ready! Please wait!</h2>'
     })
 
     socket.on('hitOrMiss', (msg, coords) => {
@@ -259,7 +268,7 @@ class DrawingLogic {
                 4: 1,
                 3: 2,
                 2: 3,
-                1: 3
+                1: 2
             }
         },
 /*        arena: {
@@ -267,14 +276,7 @@ class DrawingLogic {
             ships: {
                 1: 3
             }
-        },
-        bigOcean: {
-            size: 15,
-            ships: {
-                9: 3,
-                3: 4,
-                1: 1
-            }
+        }
         }*/
     };
 

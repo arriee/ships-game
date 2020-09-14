@@ -54,6 +54,11 @@ io.on('connection', (socket) => {
 
     socket.on('ready', () => {
         setReady(roomName, socket.id);
+        const isOpponentReady = isReady(roomName, getOpponent(roomName, socket.id));
+        if (isOpponentReady) {
+            socket.emit('ready');
+            socket.to(roomName).emit('ready');
+        }
     });
 
     socket.on('whoStarts', () => {
@@ -62,14 +67,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('target', (coords) => {
-        const isOpponentReady = isReady(roomName, getOpponent(roomName, socket.id));
-
-        if (isOpponentReady) {
-            socket.to(roomName).emit('target', coords);
-        } else {
-            socket.emit('notReady');
-        }
-
+        socket.to(roomName).emit('target', coords);
     });
 
     socket.on('hitOrMiss', (msg, coords) => {

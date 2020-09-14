@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="88320c88-3723-4969-8984-a82d668e08cb" name="Default Changelist" comment="* changed configuration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +64,8 @@
       <workItem from="1599549536037" duration="8994000" />
       <workItem from="1599586659011" duration="151000" />
       <workItem from="1599588832823" duration="4355000" />
-      <workItem from="1599644821331" duration="46000" />
+      <workItem from="1599644821331" duration="1032000" />
+      <workItem from="1600079677831" duration="2057000" />
     </task>
     <task id="LOCAL-00001" summary="added connection between 2 devices">
       <created>1598949535066</created>
@@ -266,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599594143513</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="*bugs fixed">
+      <created>1599644886970</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1599644886970</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +304,8 @@
     <MESSAGE value="First playable version&#10;* added event in case of finish&#10;* added hit event" />
     <MESSAGE value="* fixed bugs" />
     <MESSAGE value="* changed configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="* changed configuration" />
+    <MESSAGE value="*bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="*bugs fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="429" key="Github.ShareDialog" timestamp="1598867614475">
